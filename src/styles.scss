@@ -23,3 +23,7 @@ html, body{
 .hideAlert{
     display: none;
 }
+
+#SearchField:focus, button:focus{
+    outline: none;
+}

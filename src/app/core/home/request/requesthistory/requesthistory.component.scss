@@ -1,0 +1,26 @@
+#RequestHistorySection{
+    height: 80%;
+
+    .card{
+
+        #SearchField{
+            border-radius: 10px;
+            border: 2px solid #d6d6d6;
+            padding: 5px 0.5rem;
+            width: 100%;
+        }
+
+        #SearchField:focus{
+            border: 2px solid #b3c0fb;
+        }
+
+        .card-block clr-datagrid {
+            height: 300px;
+
+        }
+
+    }
+
+    
+
+}
