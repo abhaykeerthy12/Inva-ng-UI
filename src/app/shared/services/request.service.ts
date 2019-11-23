@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RequestModel } from '../../shared/models/request-model';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,5 +16,19 @@ export class RequestService {
   GetRequest():Observable<RequestModel[]>{
     return this._http.get<RequestModel[]>(this.Root_URL + '/api/requests');
   }
+
+  // register method 
+  SaveToDB(formData){
+    
+    let body: RequestModel = {
+      "EmployeeId": formData.EmployeeId,
+      "ProductId": formData.ProductId,
+      "Quantity": formData.Quantity
+    }
+
+    return this._http.post(this.Root_URL + '/api/requests', body).subscribe(res => {
+      console.log(res);
+    });
+}
 
 }

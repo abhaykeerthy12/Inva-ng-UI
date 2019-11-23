@@ -1,0 +1,38 @@
+@media screen and (max-width: 992px) {
+    #AddRequestSection{
+        #SelectProductButton, #ConfirmAddRequest, #CancelBtn{
+            margin: 0.5rem auto;
+        }
+    }
+}
+
+
+#AddRequestSection{
+    height: 80%;
+
+    .card{
+
+        #SearchField, #QuantityField{
+            border-radius: 10px;
+            border: 2px solid #d6d6d6;
+            padding: 5px 0.5rem;
+            width: 100%;
+        }
+
+        #SearchField:focus, #QuantityField:focus{
+            border: 2px solid #b3c0fb;
+        }
+
+        .card-block clr-datagrid {
+            height: 300px;
+
+        }
+
+    }
+
+}
+
+#DivToaster{
+    width: 100%;
+    margin: 0.5rem 0.5rem;
+}

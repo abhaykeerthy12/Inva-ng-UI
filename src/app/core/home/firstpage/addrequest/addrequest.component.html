@@ -1,1 +1,93 @@
-<p>addrequest works!</p>
+<section id="AddRequestSection">
+<div class="card">
+
+<div class="card-header">
+    <h3>Request Products</h3>
+</div>
+
+<div class="card-block">
+
+<!-- show if not confirmed anything -->
+<div class="clr-row" *ngIf="!ConfirmProceed">
+<!-- show if nothing is selected  -->
+<div class="clr-col-lg-12" *ngIf="!selectedProduct">
+    <div class="clr-row">
+        <div class="clr-col-lg-12">
+            <input type="text" id="SearchField" #Searchbox (keyup)="Search(Searchbox.value)" placeholder="Search!">
+        </div>
+    </div>
+</div>
+<!-- show if something selected -->
+<div class="clr-col-lg-12" *ngIf="selectedProduct">
+    <div class="clr-row">
+        <div class="clr-col-lg-10">
+            <input type="text" id="SearchField" #Searchbox (keyup)="Search(Searchbox.value)" placeholder="Search!">
+        </div>
+        <div class="clr-col-lg-2">
+            <button id="SelectProductButton" class="btn btn-primary btn-block" (click)="ConfirmProduct(selectedProduct)">Proceed</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- show if something is confirmed -->
+<form [formGroup]="RequestForm">
+<div class="clr-row" *ngIf="ConfirmProceed">
+<!-- request form -->
+<div class="clr-col-lg-12">
+    <div class="clr-row">
+        <div class="clr-col-lg-4">
+            <input type="text" id="QuantityField"  formControlName="Quantity" placeholder="Quantity" required>
+        </div>
+        <div class="clr-col-lg-4">
+            <button id="ConfirmAddRequest" class="btn btn-primary btn-block" 
+                    (click)="AddRequest(selectedProduct)">Confirm</button>
+        </div>
+        <div class="clr-col-lg-4">
+            <button id="CancelBtn" class="btn btn-primary btn-block" (click)="CancelRequest()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="DivToaster">
+<div class="alert alert-danger" role="alert" [ngClass]="{'hideAlert': !showAlert}">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{ errorvar }}</span>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+</form>
+
+
+<!-- data grid -->
+<clr-datagrid [(clrDgSingleSelected)]="selectedProduct">
+
+    <clr-dg-column [clrDgSortBy]="'Name'">Name</clr-dg-column>
+    <clr-dg-column [clrDgSortBy]="'Type'">Type</clr-dg-column>
+    <clr-dg-column [clrDgSortBy]="'Quantity'" [clrDgColType]="'number'">Quantity</clr-dg-column>
+
+    <clr-dg-placeholder>No Products To Display!</clr-dg-placeholder>
+
+    <clr-dg-row *clrDgItems="let row of rows" [clrDgItem]="row">
+        <clr-dg-cell>{{row.Name}}</clr-dg-cell>
+        <clr-dg-cell>{{row.Type}}</clr-dg-cell>
+        <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <span *ngIf="selectedProduct"> Selectd : {{selectedProduct.Name}} | </span>
+        Total: {{rows.length}} Products
+    </clr-dg-footer>
+
+</clr-datagrid>
+
+</div>
+</div>
+</section>
