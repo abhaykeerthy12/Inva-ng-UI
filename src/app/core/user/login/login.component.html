@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="clr-row">    
+<div id="UserFormSection" class="clr-col-md-12 clr-col-lg-6 animated bounceInRight faster">
+
+<form clrForm [formGroup]="LoginForm" id="LoginForm" (ngSubmit)="Login()">
+
+<div class="card">
+
+    <div class="card-header">
+        <h1>Login!</h1>
+    </div>
+    <div class="card-block">
+
+        <h6 id="sm-title">Login!</h6>
+        <clr-input-container class="clr-row">
+            <label class="clr-col-lg-4">Email</label>
+            <input type="email" class="clr-col-lg-8"clrInput formControlName="Email"  required/>
+            <clr-control-error>A valid email is required!</clr-control-error>
+        </clr-input-container>
+
+        <clr-input-container class="clr-row">
+            <label class="clr-col-lg-4">Password</label>
+            <input type="password" class="clr-col-lg-8" clrInput formControlName="Password" required />
+            <clr-control-error>A valid Password is required!</clr-control-error>
+        </clr-input-container>
+
+    </div>
+    <div class="alert alert-danger" role="alert" [ngClass]="{'hideAlert': !showAlert}">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">{{ errorvar }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <span *ngIf="(LoginForm.touched && LoginForm.invalid)">
+            <button class="btn btn-danger shadow" [disabled]="!LoginForm.valid" >Error!</button>
+        </span>
+        <span *ngIf="(!LoginForm.touched || LoginForm.valid)">
+            <button class="btn btn-primary" >Login</button>
+        </span>      
+        <a id="registerbtn" routerLink="/user/register" class="animated bounceInUp fast">Need an account?</a>
+        <a id="sm-registerbtn" routerLink="/user/register" class="animated bounceInUp fast">Register</a>
+    </div>
+</div>
+
+</form>
+
+</div>
+<div  class="clr-col-lg-6 animated bounceInLeft faster">
+    <app-login-pic></app-login-pic>
+</div>
+</div>
+        

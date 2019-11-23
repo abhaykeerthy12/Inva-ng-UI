@@ -1,0 +1,40 @@
+@media screen and (max-width: 992px) {
+    #RegisterPicSection {
+      visibility: hidden;
+      display: none;
+    }
+}
+
+#RegisterPicSection {
+    background-color: white;
+    padding: 0;
+    margin-bottom: -10000px;
+    padding-bottom: 10000px;
+    overflow: hidden;
+    -webkit-box-shadow: -4px 8px 16px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    -4px 8px 16px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         -4px 8px 16px 0px rgba(50, 50, 50, 0.75);
+
+    #UserAppLogo{
+        text-align: center;
+        margin: 3rem auto;
+    }
+
+    #UserAppText{
+        text-align: center;
+
+        .btn{
+            border-radius: 10px;
+            margin: auto;
+            margin-top: 1rem;
+        }
+    }
+
+    img{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        padding: 0;
+    }
+    
+}

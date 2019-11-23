@@ -1,6 +1,12 @@
+// angular imports
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ClarityModule } from '@clr/angular';
 
+// user imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreComponent } from './core/core.component';
@@ -10,8 +16,20 @@ import { HomeComponent } from './core/home/home.component';
 import { PagesComponent } from './core/pages/pages.component';
 import { LoginComponent } from './core/user/login/login.component';
 import { RegisterComponent } from './core/user/register/register.component';
-import { ClarityModule } from '@clr/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginPicComponent } from './core/user/extra/login-pic/login-pic.component';
+import { RegisterPicComponent } from './core/user/extra/register-pic/register-pic.component';
+import { UserService } from './shared/services/user.service';
+import { AuthInterceptorService } from './shared/auth-interceptor';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { AdminGuard } from './shared/guards/admin.guard';
+import { UserGuard } from './shared/guards/user.guard';
+import { AddrequestComponent } from './core/home/firstpage/addrequest/addrequest.component';
+import { PendingrequestComponent } from './core/home/firstpage/pendingrequest/pendingrequest.component';
+import { RequesthistoryComponent } from './core/home/request/requesthistory/requesthistory.component';
+import { FirstpageComponent } from './core/home/firstpage/firstpage.component';
+import { RequestComponent } from './core/home/request/request.component';
+import { RequestService } from './shared/services/request.service';
+import { ProductService } from './shared/services/product.service';
 
 @NgModule({
   declarations: [
@@ -22,15 +40,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     PagesComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginPicComponent,
+    RegisterPicComponent,
+    AddrequestComponent,
+    PendingrequestComponent,
+    RequesthistoryComponent,
+    FirstpageComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    UserService, RequestService, ProductService , AuthGuard, AdminGuard, UserGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
