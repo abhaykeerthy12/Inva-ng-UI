@@ -1,1 +1,70 @@
-<p>register works!</p>
+<div class="clr-row">
+
+<div  class="clr-col-lg-6 animated bounceInRight faster">
+    <app-register-pic></app-register-pic>
+</div>
+
+<div id="UserFormSection" class="clr-col-md-12 clr-col-lg-6 animated bounceInLeft faster">
+    
+    <form clrForm [formGroup]="RegisterForm" id="RegisterForm" (ngSubmit)="Register()">
+    
+    <div class="card">
+    
+        <div class="card-header">
+            <h2>Register!</h2>
+        </div>
+        <div class="card-block">
+            <h6 id="sm-title">Register!</h6>
+            <clr-input-container class="clr-row">
+                <label class="clr-col-lg-4">Name</label>
+                <input type="text" class="clr-col-lg-8"clrInput formControlName="Name" />
+                <clr-control-error>A Name is required!</clr-control-error>
+            </clr-input-container>
+    
+            <clr-input-container class="clr-row">
+                <label class="clr-col-lg-4">Email</label>
+                <input type="email" class="clr-col-lg-8"clrInput formControlName="Email" />
+                <clr-control-error>A valid email is required!</clr-control-error>
+            </clr-input-container>
+    
+            <clr-input-container class="clr-row">
+                <label class="clr-col-lg-4">Password</label>
+                <input type="password" class="clr-col-lg-8" clrInput formControlName="Password" />
+                <clr-control-error>A valid password is required!</clr-control-error>
+            </clr-input-container>
+
+            <clr-input-container class="clr-row">
+                <label class="clr-col-lg-4">ConfirmPassword</label>
+                <input type="password" class="clr-col-lg-8" clrInput formControlName="ConfirmPassword" />
+                <clr-control-error>Should match password!</clr-control-error>
+            </clr-input-container>
+    
+        </div>
+        <div class="alert alert-danger" role="alert" [ngClass]="{'hideAlert': !showAlert}">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">{{ errorvar }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span *ngIf="(RegisterForm.touched && RegisterForm.invalid)">
+                <button class="btn btn-danger shadow" [disabled]="!RegisterForm.valid" >Error!</button>
+            </span>
+            <span *ngIf="(!RegisterForm.touched || RegisterForm.valid)">
+                <button class="btn btn-primary">Register</button> 
+            </span>       
+            <a id="sm-loginbtn" routerLink="/user/login" class="animated bounceInUp fast">Login</a>
+            <a id="loginbtn" routerLink="/user/login" class="animated bounceInUp fast">Already a member?</a>
+        </div>
+    </div>
+    
+    </form>
+    
+</div>
+
+</div>
+                

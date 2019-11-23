@@ -28,8 +28,10 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@clr/ui/src/utils/_overwrites.clarity.scss",
               "node_modules/@clr/icons/clr-icons.min.css",
               "node_modules/@clr/ui/clr-ui.min.css",
+              "src/assets/css/animate.css",
               "src/styles.scss"
             ],
             "scripts": [
