@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { from } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import {ClrDatagridSortOrder} from '@clr/angular';
 
 @Component({
   selector: 'app-requesthistory',
@@ -20,11 +21,13 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
     this.LoadRequest();
   }
 
+  descSort = ClrDatagridSortOrder.DESC;
   requests = [];
   products = [];
   productListArray = [];
   userFilteredArray = [];
   rows = [];
+  realArray = [];
 
   // Get all requests from the server
   LoadRequest(){
@@ -69,7 +72,6 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
           }
       });
     });
-
     this.CombineArray(this.productListArray, reqArray);
   }
 
@@ -77,31 +79,28 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
   // this will simplify the ui part
   CombineArray(products, requests){
 
-    requests.forEach(request => {
-      products.forEach(product => {
-        
-        if(request.ProductId.toLowerCase() == product.Id.toLowerCase()){
-          this.rows.push({
-              "Name": product.Name,
-              "Type": product.Type,
-              "Quantity": request.Quantity,
-              "Status": request.Status,
-              "Date": request.RequestedDate
-          });
-        }
-
-      });
-    });
+    for(let i = 0; i < requests.length; i++){
+      if(products[i].Id.toLowerCase() == requests[i].ProductId.toLowerCase()){
+            this.rows.push({
+                "Name": products[i].Name,
+                "Type": products[i].Type,
+                "Quantity": requests[i].Quantity,
+                "Status": requests[i].Status,
+                "Date": requests[i].RequestedDate
+            });
+      }
+    }
+    this.realArray = this.rows;
   }
 
-  realArray = this.rows;
 
   Search(SearchString){
 
+    this.rows = this.realArray;
     SearchString = SearchString.toLowerCase();
     let tmpArray = [];
 
-    if(( SearchString != null ) && ( SearchString != "" ) ){
+    if(( SearchString != null ) || ( SearchString != "" ) ){
       for (let i = 0; i < this.rows.length; i++) {
         let a = this.rows[i].Name.toLowerCase();
         if(a.indexOf(SearchString) > -1){

@@ -5,19 +5,19 @@
         <h3>Request History</h3>
     </div>
 
-    <div class="card-block">
-    <input type="text" id="SearchField" #Searchbox (keyup)="Search(Searchbox.value)" placeholder="Search!">
+    <div class="card-block animated bounceInRight faster">
+    <input type="text" id="SearchFieldRequestHistory" #SearchFieldRequestHistory (keyup)="Search(SearchFieldRequestHistory.value)" placeholder="Search!">
     <clr-datagrid>
 
         <clr-dg-column [clrDgSortBy]="'Name'">Name</clr-dg-column>
         <clr-dg-column [clrDgSortBy]="'Type'">Type</clr-dg-column>
         <clr-dg-column [clrDgSortBy]="'Quantity'" [clrDgColType]="'number'">Quantity</clr-dg-column>
         <clr-dg-column [clrDgSortBy]="'Status'">Status</clr-dg-column>
-        <clr-dg-column [clrDgSortBy]="'Date'">Date</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Date'" [clrDgSortOrder]="descSort">Date</clr-dg-column>
 
         <clr-dg-placeholder>Your History Is Empty!</clr-dg-placeholder>
 
-        <clr-dg-row *clrDgItems="let row of rows">
+        <clr-dg-row class="animated fadeInUp fast" *clrDgItems="let row of rows">
             <clr-dg-cell>{{row.Name}}</clr-dg-cell>
             <clr-dg-cell>{{row.Type}}</clr-dg-cell>
             <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>

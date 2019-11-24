@@ -3,15 +3,16 @@
 
     .card{
 
-        #SearchField{
+        #SearchFieldRequestHistory{
             border-radius: 10px;
             border: 2px solid #d6d6d6;
             padding: 5px 0.5rem;
             width: 100%;
         }
 
-        #SearchField:focus{
+        #SearchFieldRequestHistory:focus{
             border: 2px solid #b3c0fb;
+            outline: none;
         }
 
         .card-block clr-datagrid {

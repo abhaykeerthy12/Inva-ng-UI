@@ -12,15 +12,16 @@
 
     .card{
 
-        #SearchField, #QuantityField{
+        #SearchFieldAddRequest, #SearchFieldAddRequest2, #QuantityField{
             border-radius: 10px;
             border: 2px solid #d6d6d6;
             padding: 5px 0.5rem;
             width: 100%;
         }
 
-        #SearchField:focus, #QuantityField:focus{
+        #SearchFieldAddRequest:focus, #SearchFieldAddRequest2:focus, #QuantityField:focus{
             border: 2px solid #b3c0fb;
+            outline: none;
         }
 
         .card-block clr-datagrid {

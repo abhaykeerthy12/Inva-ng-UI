@@ -24,7 +24,6 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { UserGuard } from './shared/guards/user.guard';
 import { AddrequestComponent } from './core/home/firstpage/addrequest/addrequest.component';
-import { PendingrequestComponent } from './core/home/firstpage/pendingrequest/pendingrequest.component';
 import { RequesthistoryComponent } from './core/home/request/requesthistory/requesthistory.component';
 import { FirstpageComponent } from './core/home/firstpage/firstpage.component';
 import { RequestComponent } from './core/home/request/request.component';
@@ -44,7 +43,6 @@ import { ProductService } from './shared/services/product.service';
     LoginPicComponent,
     RegisterPicComponent,
     AddrequestComponent,
-    PendingrequestComponent,
     RequesthistoryComponent,
     FirstpageComponent,
     RequestComponent

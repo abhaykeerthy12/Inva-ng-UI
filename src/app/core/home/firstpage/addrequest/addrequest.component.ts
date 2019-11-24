@@ -3,6 +3,7 @@ import { RequestService } from 'src/app/shared/services/request.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ClrDatagridSortOrder } from '@clr/angular';
 
 @Component({
   selector: 'app-addrequest',
@@ -23,6 +24,7 @@ export class AddrequestComponent implements OnInit, OnDestroy {
     this.CreateForm();
   }
 
+  AscSort = ClrDatagridSortOrder.ASC;
   RequestForm: FormGroup;
   ConfirmProceed: boolean = false;
   products = [];
@@ -30,13 +32,13 @@ export class AddrequestComponent implements OnInit, OnDestroy {
   realArray = [];
   showAlert: boolean = false;
   errorvar: any;
+  selectedProduct = false;
 
   CreateForm(){
-
     return this.RequestForm = this._formBuilder.group({
     EmployeeId: [''],
     ProductId: [''],
-    Quantity: ['', Validators.required]
+    Quantity: ['', [Validators.required, Validators.pattern('^[1-9]*')]]
   });
 
 }
@@ -67,7 +69,7 @@ export class AddrequestComponent implements OnInit, OnDestroy {
     }
 
     this._requestService.SaveToDB(this.RequestForm.value);
-    this.ConfirmProceed = false;
+    this.LoadProducts();
     this.RequestForm.reset();
   }
 
@@ -80,30 +82,29 @@ export class AddrequestComponent implements OnInit, OnDestroy {
 }
 
   CancelRequest(){
-    this.ConfirmProceed = false;
-  }
-
-  ConfirmProduct(selectedProduct){
-    this.ConfirmProceed = true;
+    this.LoadProducts();
+    this.RequestForm.reset();
   }
 
   Search(SearchString){
 
+    this.rows = this.realArray;
     SearchString = SearchString.toLowerCase();
     let tmpArray = [];
 
-    if(( SearchString != null ) && ( SearchString != "" ) ){
+    if(( SearchString != null ) || ( SearchString != " " )){
+      console.log(SearchString);
       for (let i = 0; i < this.rows.length; i++) {
         let a = this.rows[i].Name.toLowerCase();
         if(a.indexOf(SearchString) > -1){
           tmpArray.push(this.rows[i]);
+      }else{
+        this.rows = this.realArray;
       }
     } 
       this.rows = tmpArray;
     }else{
       this.rows = this.realArray;
-      console.log(this.rows);
-
     }
 
   }

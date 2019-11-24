@@ -5,39 +5,26 @@
     <h3>Request Products</h3>
 </div>
 
-<div class="card-block">
+<div class="card-block animated bounceInLeft faster">
 
-<!-- show if not confirmed anything -->
-<div class="clr-row" *ngIf="!ConfirmProceed">
 <!-- show if nothing is selected  -->
 <div class="clr-col-lg-12" *ngIf="!selectedProduct">
     <div class="clr-row">
         <div class="clr-col-lg-12">
-            <input type="text" id="SearchField" #Searchbox (keyup)="Search(Searchbox.value)" placeholder="Search!">
+            <input type="text" id="SearchFieldAddRequest" #SearchFieldAddRequest (keyup)="Search(SearchFieldAddRequest.value)" placeholder="Search!">
         </div>
     </div>
 </div>
-<!-- show if something selected -->
-<div class="clr-col-lg-12" *ngIf="selectedProduct">
-    <div class="clr-row">
-        <div class="clr-col-lg-10">
-            <input type="text" id="SearchField" #Searchbox (keyup)="Search(Searchbox.value)" placeholder="Search!">
-        </div>
-        <div class="clr-col-lg-2">
-            <button id="SelectProductButton" class="btn btn-primary btn-block" (click)="ConfirmProduct(selectedProduct)">Proceed</button>
-        </div>
-    </div>
-</div>
-</div>
+
 
 <!-- show if something is confirmed -->
 <form [formGroup]="RequestForm">
-<div class="clr-row" *ngIf="ConfirmProceed">
+<div class="clr-row" *ngIf="selectedProduct">
 <!-- request form -->
 <div class="clr-col-lg-12">
     <div class="clr-row">
         <div class="clr-col-lg-4">
-            <input type="text" id="QuantityField"  formControlName="Quantity" placeholder="Quantity" required>
+            <input type="number" id="QuantityField" min="1"  formControlName="Quantity" placeholder="Quantity" required>
         </div>
         <div class="clr-col-lg-4">
             <button id="ConfirmAddRequest" class="btn btn-primary btn-block" 
@@ -49,8 +36,8 @@
     </div>
 </div>
 
-<div id="DivToaster">
-<div class="alert alert-danger" role="alert" [ngClass]="{'hideAlert': !showAlert}">
+<div id="DivToaster" [ngClass]="{'hideAlert': !showAlert}">
+<div class="alert alert-danger" role="alert">
     <div class="alert-items">
         <div class="alert-item static">
             <div class="alert-icon-wrapper">
@@ -69,13 +56,13 @@
 <!-- data grid -->
 <clr-datagrid [(clrDgSingleSelected)]="selectedProduct">
 
-    <clr-dg-column [clrDgSortBy]="'Name'">Name</clr-dg-column>
+    <clr-dg-column [clrDgSortBy]="'Name'" [clrDgSortOrder]="AscSort">Name</clr-dg-column>
     <clr-dg-column [clrDgSortBy]="'Type'">Type</clr-dg-column>
     <clr-dg-column [clrDgSortBy]="'Quantity'" [clrDgColType]="'number'">Quantity</clr-dg-column>
 
     <clr-dg-placeholder>No Products To Display!</clr-dg-placeholder>
 
-    <clr-dg-row *clrDgItems="let row of rows" [clrDgItem]="row">
+    <clr-dg-row class="animated fadeInUp fast" *clrDgItems="let row of rows" [clrDgItem]="row">
         <clr-dg-cell>{{row.Name}}</clr-dg-cell>
         <clr-dg-cell>{{row.Type}}</clr-dg-cell>
         <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>
