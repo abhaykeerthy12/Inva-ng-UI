@@ -12,14 +12,14 @@
 
     .card{
 
-        #SearchFieldAddRequest, #SearchFieldAddRequest2, #QuantityField{
+        #SearchFieldAddRequest, #QuantityField{
             border-radius: 10px;
             border: 2px solid #d6d6d6;
             padding: 5px 0.5rem;
             width: 100%;
         }
 
-        #SearchFieldAddRequest:focus, #SearchFieldAddRequest2:focus, #QuantityField:focus{
+        #SearchFieldAddRequest:focus, #QuantityField:focus{
             border: 2px solid #b3c0fb;
             outline: none;
         }
@@ -29,6 +29,10 @@
 
         }
 
+    }
+
+    .clr-col-lg-12{
+        padding: 0 0.2rem;
     }
 
 }

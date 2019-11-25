@@ -29,6 +29,8 @@ import { FirstpageComponent } from './core/home/firstpage/firstpage.component';
 import { RequestComponent } from './core/home/request/request.component';
 import { RequestService } from './shared/services/request.service';
 import { ProductService } from './shared/services/product.service';
+import { ManageproductsComponent } from './core/admin/manageproducts/manageproducts.component';
+import { ManagerequestsComponent } from './core/admin/managerequests/managerequests.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ProductService } from './shared/services/product.service';
     AddrequestComponent,
     RequesthistoryComponent,
     FirstpageComponent,
-    RequestComponent
+    RequestComponent,
+    ManageproductsComponent,
+    ManagerequestsComponent,
   ],
   imports: [
     BrowserModule,

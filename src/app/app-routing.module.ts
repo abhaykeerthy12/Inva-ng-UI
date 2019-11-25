@@ -14,6 +14,10 @@ import { UserGuard } from './shared/guards/user.guard';
 import { RequesthistoryComponent } from './core/home/request/requesthistory/requesthistory.component';
 import { FirstpageComponent } from './core/home/firstpage/firstpage.component';
 import { RequestComponent } from './core/home/request/request.component';
+import { AdminComponent } from './core/admin/admin.component';
+import { AdminGuard } from './shared/guards/admin.guard';
+import { ManageproductsComponent } from './core/admin/manageproducts/manageproducts.component';
+import { ManagerequestsComponent } from './core/admin/managerequests/managerequests.component';
 
 
 const routes: Routes = [
@@ -47,6 +51,40 @@ const routes: Routes = [
         path: '',
         component: RegisterComponent,
         canActivate: [UserGuard]
+      }
+    ]
+  },
+  {
+    path: 'admin/manageproducts',
+    component: CoreComponent,
+    children: [
+      {
+        path: '',
+        component: AdminComponent,
+        canActivate: [AdminGuard],
+        children: [
+          {
+            path: '',
+            component: ManageproductsComponent
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'admin/managerequests',
+    component: CoreComponent,
+    children: [
+      {
+        path: '',
+        component: AdminComponent,
+        canActivate: [AdminGuard],
+        children: [
+          {
+            path: '',
+            component: ManagerequestsComponent
+          }
+        ]
       }
     ]
   },

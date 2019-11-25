@@ -1,5 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
+// font import
+@font-face { 
+    font-family: Norican;
+    src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
+    src: url('./assets/fonts/Roboto/Roboto-Medium.ttf');
+    src: url('./assets/fonts/Roboto/Roboto-Bold.ttf');
+}
+
+$clr-global-app-background: #fff;
+$clr-font: 'Roboto', sans-serif;
+$clr-altFont: $clr-font;
+$clr-global-content-header-font-color: $clr-font;
+$clr-font-weight-light: 300;
+$clr-font-weight-regular: 450;
+
+
+// font family
+html, body,p,span, h1,h2,h3,h4,h5,h6,
+.btn,.card,.main-container,.nav-text,
+.datagrid-table .datagrid-cell
+{
+    font-family: $clr-font;
+    font-weight: $clr-font-weight-regular;
+    letter-spacing: 1px;
+}
+
 html, body{
     height: 100%;
     width: 100%;
@@ -7,16 +33,42 @@ html, body{
     margin: 0;
 }
 
+.main-container{
+    background-color: $clr-global-app-background;
+}
+
+clr-header{
+    z-index: 100;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.content-area{
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    z-index: 50;
+}
+
+body{
+    z-index: 99;
+}
+
+clr-vertical-nav{
+    z-index: 3;
+}
 
 .main-container .content-container .content-area{
     padding: 0;
 }
 
 
-.btn{
+.btn, .btn-primary{
     -webkit-box-shadow: 0px 6px 8px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 6px 8px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 6px 8px 0px rgba(50, 50, 50, 0.75);
+    border-radius: 10px;
 }
 
 // custom toast
@@ -26,4 +78,14 @@ html, body{
 
 #SearchField:focus, button:focus,  #QuantityField:focus{
     outline: none;
+}
+
+.card{
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.85);
+    -moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.85);
+    box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.85);
+    border-radius: 7px;
+}
+div .alert{
+    border-radius: 10px;
 }

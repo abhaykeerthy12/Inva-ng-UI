@@ -7,11 +7,11 @@ import { filter } from 'rxjs/operators';
 import {ClrDatagridSortOrder} from '@clr/angular';
 
 @Component({
-  selector: 'app-requesthistory',
-  templateUrl: './requesthistory.component.html',
-  styleUrls: ['./requesthistory.component.scss']
+  selector: 'app-managerequests',
+  templateUrl: './managerequests.component.html',
+  styleUrls: ['./managerequests.component.scss']
 })
-export class RequesthistoryComponent implements OnInit, OnDestroy {
+export class ManagerequestsComponent implements OnInit, OnDestroy {
 
   private _subscription: Subscription
 
@@ -51,37 +51,34 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
       this.LoadProducts();          
   }
 
-
   // get all products form the server
   LoadProducts(){
     this._subscription =  this._productService.GetProducts().subscribe(
       (data) => {
         this.products = data;
-        console.log(this.products)
         this.FilterProducts(this.products, this.userFilteredArray);
       }
     );
   }
+
 
   // check if a product id is equal to product id in request array 
   // if yes, just pussh the corresponding product to a separate array 
   FilterProducts(prodArray, reqArray){
     reqArray.forEach(request => {
         prodArray.forEach(products => {
-          console.log(products)
-          console.log(request)
           if(request.ProductId.toLowerCase() == products.Id.toLowerCase()){
             this.productListArray.push(products);
           }
       });
     });
-    console.log(this.productListArray)
     this.CombineArray(this.productListArray, reqArray);
   }
 
   // combine the two arrays to get a easy ui frontly single array
   // this will simplify the ui part
   CombineArray(products, requests){
+
     for(let i = 0; i < requests.length; i++){
       if(products[i].Id.toLowerCase() == requests[i].ProductId.toLowerCase()){
             this.rows.push({
@@ -95,7 +92,6 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
     }
     this.realArray = this.rows;
   }
-
 
   Search(SearchString){
 
@@ -117,9 +113,11 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
 
   }
 
+
   ngOnDestroy(){
     if(this._subscription != null)
       this._subscription.unsubscribe();
   }
+
 
 }

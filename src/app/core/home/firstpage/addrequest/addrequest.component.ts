@@ -38,7 +38,7 @@ export class AddrequestComponent implements OnInit, OnDestroy {
     return this.RequestForm = this._formBuilder.group({
     EmployeeId: [''],
     ProductId: [''],
-    Quantity: ['', [Validators.required, Validators.pattern('^[1-9]*')]]
+    Quantity: ['', [Validators.required]]
   });
 
 }

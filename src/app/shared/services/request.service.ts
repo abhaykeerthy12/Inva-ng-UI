@@ -13,6 +13,7 @@ export class RequestService {
 
   readonly Root_URL = "https://localhost:44358";
 
+  // get data from server
   GetRequest():Observable<RequestModel[]>{
     return this._http.get<RequestModel[]>(this.Root_URL + '/api/requests');
   }
@@ -29,6 +30,26 @@ export class RequestService {
     return this._http.post(this.Root_URL + '/api/requests', body).subscribe(res => {
       console.log(res);
     });
+}
+
+// update method 
+UpdateStatus(reqid, formData){
+    
+  let body: RequestModel = {
+    "EmployeeId": formData.EmployeeId,
+    "ProductId": formData.ProductId,
+    "Quantity": formData.Quantity,
+    "Status": formData.Status
+  }
+
+  return this._http.put(this.Root_URL + '/api/requests/' + reqid, body).subscribe(res => {
+    console.log(res);
+  });
+}
+
+ // delete request
+ DeleteFromDB(Id){
+  this._http.delete(this.Root_URL + '/api/requests/' + Id).subscribe();
 }
 
 }

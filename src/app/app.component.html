@@ -35,10 +35,16 @@
                     <clr-icon clrVerticalNavIcon shape="history"></clr-icon>
                     Request History
                 </a>
-                <a clrVerticalNavLink routerLink="./fighting" *ngIf="IsAdmin()" routerLinkActive="active">
-                    <clr-icon clrVerticalNavIcon shape="shield"></clr-icon>
-                    Fighting
-                </a>
+                <div *ngIf="IsAdmin()">
+                    <a clrVerticalNavLink routerLink="/admin/managerequests" routerLinkActive="active">
+                        <clr-icon clrVerticalNavIcon shape="slider"></clr-icon>
+                        Manage Requests
+                    </a>
+                    <a clrVerticalNavLink routerLink="/admin/manageproducts" routerLinkActive="active">
+                        <clr-icon clrVerticalNavIcon shape="cog"></clr-icon>
+                        Manage Products
+                    </a>
+                </div>
         </clr-vertical-nav>
         
     </div>
