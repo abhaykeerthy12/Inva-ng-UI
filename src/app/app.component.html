@@ -9,8 +9,8 @@
             </a>
         </div>
         <div class="header-nav" [clr-nav-level]="1" *ngIf="!IsLoggedIn()">
-            <a routerLink="" routerLinkActive="" class="nav-link nav-text">About</a>
-            <a routerLink="" routerLinkActive="" class="nav-link nav-text">Contact Us</a>
+            <a routerLink="about" routerLinkActive="active" class="nav-link nav-text">About</a>
+            <a routerLink="contact" routerLinkActive="active" class="nav-link nav-text">Contact Us</a>
             <a routerLink="user/login" routerLinkActive="active" class="nav-link nav-text">Join</a>
         </div>
         <div class="header-actions" *ngIf="IsLoggedIn()">
@@ -35,22 +35,16 @@
                     <clr-icon clrVerticalNavIcon shape="history"></clr-icon>
                     Request History
                 </a>
-                <a clrVerticalNavLink routerLink="./poison" routerLinkActive="active">
-                    <clr-icon clrVerticalNavIcon shape="sad-face"></clr-icon>
-                    Poison
-                </a>
-                <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
-                    <clr-icon clrVerticalNavIcon shape="bug"></clr-icon>
-                    Grass
-                </a>
-                <a clrVerticalNavLink routerLink="./fighting" *ngIf="IsAdmin()" routerLinkActive="active">
-                    <clr-icon clrVerticalNavIcon shape="shield"></clr-icon>
-                    Fighting
-                </a>
-                <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
-                    <clr-icon clrVerticalNavIcon shape="certificate"></clr-icon>
-                    Credit
-                </a>
+                <div *ngIf="IsAdmin()">
+                    <a clrVerticalNavLink routerLink="/admin/managerequests" routerLinkActive="active">
+                        <clr-icon clrVerticalNavIcon shape="slider"></clr-icon>
+                        Manage Requests
+                    </a>
+                    <a clrVerticalNavLink routerLink="/admin/manageproducts" routerLinkActive="active">
+                        <clr-icon clrVerticalNavIcon shape="cog"></clr-icon>
+                        Manage Products
+                    </a>
+                </div>
         </clr-vertical-nav>
         
     </div>

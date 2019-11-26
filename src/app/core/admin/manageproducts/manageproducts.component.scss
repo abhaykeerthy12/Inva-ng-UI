@@ -1,0 +1,67 @@
+@media screen and (max-width: 992px) {
+    .btn{
+        margin: 0.5rem auto;
+    }
+}
+
+#ManageProductsSection{
+    padding: 0;
+    padding-top: 1rem;
+    margin: 0;
+    margin-bottom: 3rem;
+    height: 100%;
+
+    .alert{
+        margin: 2px 10px;
+    }
+
+    #ShowProductGrid .btn{
+        width: 100%;
+    }
+
+    .clr-col-lg-12{ padding: 0 0.3rem; }
+    #SearchFieldAddProduct{
+        border-radius: 10px;
+        border: 2px solid #d6d6d6;
+        padding: 2px 0.5rem;
+        width: 100%;
+    }
+
+    #SearchFieldAddProduct:focus{
+        border: 2px solid #b3c0fb;
+        outline: none;
+    }
+
+    form { padding: 0; }
+
+    article{
+        height: 100%;
+        width: 100%;
+        padding: 0.5rem;
+        margin: 0 auto;
+    }
+
+    clr-datagrid{
+        height: 250px;
+    }
+
+    .card{
+        margin: 0;
+        margin-bottom: 2rem;
+        height: 100%;
+        .card-header{
+            h2{
+                margin: 0;
+            }
+        }
+        .card-block{
+            padding-bottom: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .card-footer{
+            margin-top: 0.2rem;
+            margin-bottom: 0.3rem;
+            padding-bottom: 0.5rem;
+        }
+    }
+}

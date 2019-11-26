@@ -1,0 +1,201 @@
+<!-- this section consist of add, edit and delete products -->
+<section id="ManageProductsSection">
+<div class="clr-row">
+
+<!-- the add products form -->
+<article id="AddProduct" class="clr-col-lg-4" *ngIf="!EditProduct">
+<form clrForm [formGroup]="AddProductForm" id="AddProductForm" (ngSubmit)="AddProduct()">
+<!-- the form card  -->
+<div class="card animated flipInX faster">
+<!-- header -->
+<div class="card-header">
+    <h2>Add Product</h2>
+</div>
+
+<!-- body -->
+<div class="card-block">
+
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Name</label>
+        <input type="text" class="clr-col-lg-8"clrInput formControlName="Name" />
+        <clr-control-error>A Name is required!</clr-control-error>
+    </clr-input-container>
+    
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Type</label>
+        <input type="text" class="clr-col-lg-8"clrInput formControlName="Type" />
+        <clr-control-error>A Type is required!</clr-control-error>
+    </clr-input-container>
+    
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Quantity</label>
+        <input type="text" class="clr-col-lg-8" clrInput formControlName="Quantity" />
+        <clr-control-error>Quantity required!</clr-control-error>
+    </clr-input-container>
+    
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Price</label>
+        <input type="text" class="clr-col-lg-8" clrInput formControlName="Price" />
+        <clr-control-error>Price is Must!</clr-control-error>
+    </clr-input-container>
+    
+</div>
+<!-- body -->
+
+<!-- the alert -->
+<div class="alert" role="alert" [ngClass]="{'hideAlert': !showAlert, 'alert-danger': ErrorMsg, 'alert-success': SuccessMsg}">
+<div class="alert-items">
+    <div class="alert-item static">
+        <div class="alert-icon-wrapper" *ngIf="ErrorMsg && !SuccessMsg">
+            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+        </div>
+        <div class="alert-icon-wrapper" *ngIf="!ErrorMsg && SuccessMsg">
+            <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+        </div>
+        <span class="alert-text">{{ errorvar }}</span>
+    </div>
+</div>
+</div>
+
+<!-- footer -->
+<div class="card-footer">
+    <span *ngIf="(AddProductForm.touched && AddProductForm.invalid)">
+        <button class="btn btn-danger shadow" [disabled]="!AddProductForm.valid" >Error!</button>
+    </span>
+    <span *ngIf="(!AddProductForm.touched || AddProductForm.valid)">
+        <button class="btn btn-primary">Add Product</button> 
+    </span>       
+</div>
+<!-- footer -->
+</div>
+</form>
+</article>
+<!-- the add form -->
+
+
+<!-- the edit form -->
+<article id="EditProduct" class="clr-col-lg-4" *ngIf="EditProduct">
+<form clrForm [formGroup]="EditProductForm" id="EditProductForm" (ngSubmit)="UpdateProduct()">
+<!-- the form card  -->
+<div class="card animated flipInY faster">
+<!-- header -->
+<div class="card-header">
+    <h2>Edit Product</h2>
+</div>
+
+<!-- body -->
+<div class="card-block">
+
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Name</label>
+        <input type="text" class="clr-col-lg-8"clrInput formControlName="Name" />
+        <clr-control-error>A Name is required!</clr-control-error>
+    </clr-input-container>
+    
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Type</label>
+        <input type="text" class="clr-col-lg-8"clrInput formControlName="Type" />
+        <clr-control-error>A Type is required!</clr-control-error>
+    </clr-input-container>
+    
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Quantity</label>
+        <input type="text" class="clr-col-lg-8" clrInput formControlName="Quantity" />
+        <clr-control-error>Quantity required!</clr-control-error>
+    </clr-input-container>
+    
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Price</label>
+        <input type="text" class="clr-col-lg-8" clrInput formControlName="Price" />
+        <clr-control-error>Price is Must!</clr-control-error>
+    </clr-input-container>
+    
+</div>
+<!-- body -->
+
+<!-- the alert -->
+<div class="alert" role="alert" [ngClass]="{'hideAlert': !showAlert, 'alert-danger': ErrorMsg, 'alert-success': SuccessMsg}">
+<div class="alert-items">
+    <div class="alert-item static">
+        <div class="alert-icon-wrapper" *ngIf="ErrorMsg && !SuccessMsg">
+            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+        </div>
+        <div class="alert-icon-wrapper" *ngIf="!ErrorMsg && SuccessMsg">
+            <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+        </div>
+        <span class="alert-text">{{ errorvar }}</span>
+    </div>
+</div>
+</div>
+
+<!-- footer -->
+<div class="card-footer">
+    <span *ngIf="(EditProductForm.touched && EditProductForm.invalid)">
+        <button class="btn btn-danger shadow" [disabled]="!AddProductForm.valid" >Error!</button>
+    </span>
+    <span *ngIf="(!EditProductForm.touched || EditProductForm.valid)">
+        <button class="btn btn-primary">Edit Product</button> 
+    </span>       
+</div>
+<!-- footer -->
+</div>
+</form>
+</article>
+<!-- the edit form -->
+
+<!-- the datagrid -->
+<article id="ShowProductGrid" class="clr-col-lg-8">
+<div class="card">
+    <div class="card-header animated lightSpeedIn faster">
+        Manage Products
+    </div>
+<div class="card-block">
+<!-- show if nothing is selected  -->
+<div class="clr-col-lg-12">
+<div class="clr-row">
+    <div class="clr-col-lg-12">
+        <input type="text" id="SearchFieldAddProduct" *ngIf="!selectedProduct" 
+                #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)" placeholder="Search!">
+        <div class="clr-row" *ngIf="selectedProduct">
+            <div class="clr-col-lg-4">
+                <button class="btn btn-success btn-block" (click)="EditBtn(selectedProduct)">Edit</button>
+            </div>
+            <div class="clr-col-lg-4">
+                <button class="btn btn-danger btn-block" (click)="Delete(selectedProduct)">Delete</button>
+            </div>
+            <div class="clr-col-lg-4">
+                <button class="btn btn-primary btn-block" (click)="Cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<clr-datagrid [(clrDgSingleSelected)]="selectedProduct">
+    <clr-dg-column [clrDgSortBy]="'Name'" [clrDgSortOrder]="AscSort">Name</clr-dg-column>
+    <clr-dg-column [clrDgSortBy]="'Type'">Type</clr-dg-column>
+    <clr-dg-column [clrDgSortBy]="'Quantity'" [clrDgColType]="'number'">Quantity</clr-dg-column>
+    <clr-dg-column [clrDgSortBy]="'Price'" [clrDgColType]="'number'">Price</clr-dg-column>
+    
+    <clr-dg-placeholder>No Products To Display!</clr-dg-placeholder>
+    
+    <clr-dg-row class="animated fadeInLeft faster" *clrDgItems="let row of rows" [clrDgItem]="row">
+        <clr-dg-cell>{{row.Name}}</clr-dg-cell>
+        <clr-dg-cell>{{row.Type}}</clr-dg-cell>
+        <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>
+        <clr-dg-cell>{{row.Price | currency:'INR'}}</clr-dg-cell>
+    </clr-dg-row>
+    
+    <clr-dg-footer>
+        <span *ngIf="selectedProduct"> Selectd : {{selectedProduct.Name}} | </span>
+        Total: {{rows.length}} Products
+    </clr-dg-footer>
+</clr-datagrid>  
+</div>
+</div>
+</article>       
+<!-- the datagrid -->
+           
+        
+</div>       
+</section>
+                    

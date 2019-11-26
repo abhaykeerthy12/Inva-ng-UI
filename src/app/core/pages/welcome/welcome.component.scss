@@ -1,0 +1,92 @@
+@media screen and (max-width: 992px) {
+    #WelcomeSection{
+        #PopUpText{
+            visibility: hidden;
+            display: none;
+        }
+    }
+}
+
+
+
+#WelcomeSection{
+    padding: 0;
+    margin: 0;
+
+    #HeroSection{
+
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: 200px;
+        background-color: #8d261f;
+        z-index: 5;
+        img{
+            z-index: 5;
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            min-width: 1366px;
+        }
+    }
+
+    #PopUpSection{
+
+        margin-top: -100px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+        width: 60%;
+        z-index: 50;
+        height: 250px;
+        text-align: center;
+        padding: 1rem;
+        overflow: hidden;
+
+        #PopUpTitle{
+            // padding: 3.3rem;
+            margin-top: 0.5rem;
+            padding: 2rem;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        #PopUpText{
+            margin-top: 0.5rem;
+            padding: 2rem;
+            padding-top: 1rem;
+            overflow: hidden;
+
+            h4{
+                margin-top: 10px;
+            }
+        }
+
+        h1, h3{
+            margin: 0;
+        }
+    }
+
+    #BaseSection{
+        margin: auto;
+        padding: 1rem;
+        margin-top: 5rem;
+        overflow: hidden;
+        .card{
+            -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+            -moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+            box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+            padding: 2rem;
+            text-align: center;
+        }
+        img{
+            width: 100%;
+            height: 200px;
+        }
+
+        .pic-text{
+            margin-top: 2rem;
+        }
+    }
+
+}
+

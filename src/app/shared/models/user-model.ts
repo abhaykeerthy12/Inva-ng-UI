@@ -1,6 +1,7 @@
 export interface UserModel {
-    Name: string;
-    Email: string;
-    Password: string;
-    ConfirmPassword: string;
+    Id?: string;
+    Name?: string;
+    Email?: string;
+    Password?: string;
+    ConfirmPassword?: string;
 }

@@ -29,11 +29,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return this.RegisterForm = this._formBuilder.group({
       Name: ['', Validators.required],
       Email: ['',[ Validators.required, Validators.email ]],
-      Password: ['', [ Validators.required, Validators.minLength(6) ]],
+      Password: ['', [ Validators.required, Validators.minLength(6), 
+                      Validators.pattern('^(?=.*[0-9])(?=.*[a-z])([a-z0-9_-]+)$') ]],
       ConfirmPassword: ['', [ Validators.required, Validators.minLength(6) ]]
     });
 
   }
+
+ 
 
   Register(){
 

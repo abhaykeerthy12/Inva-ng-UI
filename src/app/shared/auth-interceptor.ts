@@ -30,7 +30,6 @@ export class AuthInterceptorService implements HttpInterceptor {
       const clone = req.clone({
         headers: _headers
       });
-
       return next.handle(clone)
       .pipe(
         catchError(this.handleError)

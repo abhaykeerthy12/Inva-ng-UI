@@ -12,4 +12,7 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
   }
 
+  year = new Date().getFullYear();
+
+
 }
