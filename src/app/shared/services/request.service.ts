@@ -35,7 +35,8 @@ export class RequestService {
 // update method 
 UpdateStatus(reqid, formData){
     
-  let body: RequestModel = {
+  let body = {
+    "Id": formData.RequestId,
     "EmployeeId": formData.EmployeeId,
     "ProductId": formData.ProductId,
     "Quantity": formData.Quantity,

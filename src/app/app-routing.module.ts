@@ -18,6 +18,9 @@ import { AdminComponent } from './core/admin/admin.component';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { ManageproductsComponent } from './core/admin/manageproducts/manageproducts.component';
 import { ManagerequestsComponent } from './core/admin/managerequests/managerequests.component';
+import { WelcomeComponent } from './core/pages/welcome/welcome.component';
+import { AboutComponent } from './core/pages/about/about.component';
+import { ContactComponent } from './core/pages/contact/contact.component';
 
 
 const routes: Routes = [
@@ -28,7 +31,47 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PagesComponent
+        component: PagesComponent,
+        children: [
+          {
+            path: '',
+            component: WelcomeComponent
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'about',
+    component: CoreComponent,
+    canActivate: [UserGuard],
+    children: [
+      {
+        path: '',
+        component: PagesComponent,
+        children: [
+          {
+            path: '',
+            component: AboutComponent
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'contact',
+    component: CoreComponent,
+    canActivate: [UserGuard],
+    children: [
+      {
+        path: '',
+        component: PagesComponent,
+        children: [
+          {
+            path: '',
+            component: ContactComponent
+          }
+        ]
       }
     ]
   },

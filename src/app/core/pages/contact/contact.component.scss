@@ -1,0 +1,31 @@
+#ContactSection{
+    
+    h2{
+        text-align: center;
+        margin: 2rem 1rem auto;
+    }
+
+    #ContactContent{
+        width: 80%;
+        margin: 1rem auto;
+        box-shadow: none;
+        border: none;
+
+        h4{ text-align: center; }
+
+        img{
+            height: 300px;
+            width: 100%;
+            margin-top: 1rem;
+            padding: 2rem;
+
+        }
+
+        .card{
+            .card-footer{
+                margin: 0.5rem auto;
+            }
+        }
+    }
+
+}

@@ -46,9 +46,14 @@ export class AddrequestComponent implements OnInit, OnDestroy {
 
   // get all products form the server
   LoadProducts(){
+    this.rows = [];
     this._subscription =  this._productService.GetProducts().subscribe(
       (data) => {
-        this.rows = data;
+        data.forEach(val => {
+          if(val.Quantity != 0){
+            this.rows.push(val);
+          }
+        });
         this.realArray = data;
       }
     );
@@ -93,7 +98,6 @@ export class AddrequestComponent implements OnInit, OnDestroy {
     let tmpArray = [];
 
     if(( SearchString != null ) || ( SearchString != " " )){
-      console.log(SearchString);
       for (let i = 0; i < this.rows.length; i++) {
         let a = this.rows[i].Name.toLowerCase();
         if(a.indexOf(SearchString) > -1){

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user-model';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,12 @@ export class UserService {
   constructor(private _http: HttpClient, private _router: Router) { }
 
   readonly Root_URL = "https://localhost:44358";
+
+
+  // get all user data
+  GetAllUserData():Observable<UserModel[]>{
+    return this._http.get<UserModel[]>(this.Root_URL + '/api/account/alluserdata');
+  }
 
   // register method 
   RegisterToDB(formData){

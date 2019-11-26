@@ -6,7 +6,7 @@
 <article id="AddProduct" class="clr-col-lg-4" *ngIf="!EditProduct">
 <form clrForm [formGroup]="AddProductForm" id="AddProductForm" (ngSubmit)="AddProduct()">
 <!-- the form card  -->
-<div class="card">
+<div class="card animated flipInX faster">
 <!-- header -->
 <div class="card-header">
     <h2>Add Product</h2>
@@ -77,7 +77,7 @@
 <article id="EditProduct" class="clr-col-lg-4" *ngIf="EditProduct">
 <form clrForm [formGroup]="EditProductForm" id="EditProductForm" (ngSubmit)="UpdateProduct()">
 <!-- the form card  -->
-<div class="card">
+<div class="card animated flipInY faster">
 <!-- header -->
 <div class="card-header">
     <h2>Edit Product</h2>
@@ -146,7 +146,7 @@
 <!-- the datagrid -->
 <article id="ShowProductGrid" class="clr-col-lg-8">
 <div class="card">
-    <div class="card-header">
+    <div class="card-header animated lightSpeedIn faster">
         Manage Products
     </div>
 <div class="card-block">
@@ -178,7 +178,7 @@
     
     <clr-dg-placeholder>No Products To Display!</clr-dg-placeholder>
     
-    <clr-dg-row class="animated fadeInUp fast" *clrDgItems="let row of rows" [clrDgItem]="row">
+    <clr-dg-row class="animated fadeInLeft faster" *clrDgItems="let row of rows" [clrDgItem]="row">
         <clr-dg-cell>{{row.Name}}</clr-dg-cell>
         <clr-dg-cell>{{row.Type}}</clr-dg-cell>
         <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>

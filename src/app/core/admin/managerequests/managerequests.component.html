@@ -1,33 +1,63 @@
-<section id="RequestHistorySection">
-        <div class="card">
-        
-            <div class="card-header animated lightSpeedIn faster">
-                <h3>Request History</h3>
-            </div>
-        
-            <div class="card-block animated fadeIn faster">
-            <input type="text" id="SearchFieldRequestHistory" #SearchFieldRequestHistory (keyup)="Search(SearchFieldRequestHistory.value)" placeholder="Search!">
-            <clr-datagrid>
-        
-                <clr-dg-column [clrDgSortBy]="'Name'">Name</clr-dg-column>
-                <clr-dg-column [clrDgSortBy]="'Type'">Type</clr-dg-column>
-                <clr-dg-column [clrDgSortBy]="'Quantity'" [clrDgColType]="'number'">Quantity</clr-dg-column>
-                <clr-dg-column [clrDgSortBy]="'Status'">Status</clr-dg-column>
-                <clr-dg-column [clrDgSortBy]="'Date'" [clrDgSortOrder]="descSort">Date</clr-dg-column>
-        
-                <clr-dg-placeholder>Your History Is Empty!</clr-dg-placeholder>
-        
-                <clr-dg-row class="animated fadeInUp fast" *clrDgItems="let row of rows">
-                    <clr-dg-cell>{{row.Name}}</clr-dg-cell>
-                    <clr-dg-cell>{{row.Type}}</clr-dg-cell>
-                    <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>
-                    <clr-dg-cell>{{row.Status}}</clr-dg-cell>
-                    <clr-dg-cell>{{row.Date | date}}</clr-dg-cell>
-                </clr-dg-row>
-        
-                <clr-dg-footer>Total: {{rows.length}} Requests</clr-dg-footer>
-        
-            </clr-datagrid>
-            </div>
+<section id="ManageRequestSection">
+<div class="card">
+
+    <div class="card-header animated lightSpeedIn faster">
+        <h3>Manage Requests</h3>
+    </div>
+
+    <div class="card-block animated fadeIn faster">
+    <input type="text" id="SearchFieldManageRequest" *ngIf="!selectedRequest"
+                        #SearchFieldManageRequest (keyup)="Search(SearchFieldManageRequest.value)" placeholder="Search!">
+    <div class="clr-row" *ngIf="selectedRequest">
+        <div class="clr-col-lg-4">
+            <button class="btn btn-success btn-block" (click)="Submit(selectedRequest, 'Approve')">Approve</button>
         </div>
-        </section>
+        <div class="clr-col-lg-4">
+            <button class="btn btn-danger btn-block" (click)="Submit(selectedRequest, 'Reject')">Reject</button>
+        </div>
+        <div class="clr-col-lg-4">
+            <button class="btn btn-primary btn-block" (click)="Cancel()">Cancel</button>
+        </div>
+    </div>
+    <!-- the alert -->
+    <div class="alert" role="alert" [ngClass]="{'hideAlert': !showAlert, 'alert-danger': ErrorMsg, 'alert-success': SuccessMsg}">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper" *ngIf="ErrorMsg && !SuccessMsg">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <div class="alert-icon-wrapper" *ngIf="!ErrorMsg && SuccessMsg">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{ errorvar }}</span>
+        </div>
+    </div>
+    </div>
+    <clr-datagrid [(clrDgSingleSelected)]="selectedRequest">
+
+        <clr-dg-column [clrDgSortBy]="'EmployeeName'">User</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Name'">Name</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Type'">Type</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Quantity'" [clrDgColType]="'number'">Quantity</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'ProductQuantity'" [clrDgColType]="'number'">Product Quantity</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Status'">Status</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Date'" [clrDgSortOrder]="descSort">Date</clr-dg-column>
+
+        <clr-dg-placeholder>Everything is clear!</clr-dg-placeholder>
+
+        <clr-dg-row class="animated fadeInLeft faster" *clrDgItems="let row of rows" [clrDgItem]="row">
+            <clr-dg-cell>{{row.EmployeeName}}</clr-dg-cell>
+            <clr-dg-cell>{{row.Name}}</clr-dg-cell>
+            <clr-dg-cell>{{row.Type}}</clr-dg-cell>
+            <clr-dg-cell>{{row.Quantity}}</clr-dg-cell>
+            <clr-dg-cell>{{row.ProductQuantity}}</clr-dg-cell>
+            <clr-dg-cell>{{row.Status}}</clr-dg-cell>
+            <clr-dg-cell>{{row.Date | date}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>Total: {{rows.length}} Requests</clr-dg-footer>
+
+    </clr-datagrid>
+    </div>
+</div>
+</section>

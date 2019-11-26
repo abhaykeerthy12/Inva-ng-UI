@@ -1,16 +1,22 @@
-#RequestHistorySection{
+@media screen and (max-width: 992px) {
+    .btn{
+        margin: 0.5rem auto;
+    }
+}
+
+#ManageRequestSection{
     height: 80%;
 
     .card{
 
-        #SearchFieldRequestHistory{
+        #SearchFieldManageRequest{
             border-radius: 10px;
             border: 2px solid #d6d6d6;
             padding: 5px 0.5rem;
             width: 100%;
         }
 
-        #SearchFieldRequestHistory:focus{
+        #SearchFieldManageRequest:focus{
             border: 2px solid #b3c0fb;
             outline: none;
         }
@@ -20,6 +26,10 @@
 
         }
 
+    }
+
+    .alert{
+        margin-top: 1rem;
     }
 
     

@@ -31,6 +31,9 @@ import { RequestService } from './shared/services/request.service';
 import { ProductService } from './shared/services/product.service';
 import { ManageproductsComponent } from './core/admin/manageproducts/manageproducts.component';
 import { ManagerequestsComponent } from './core/admin/managerequests/managerequests.component';
+import { WelcomeComponent } from './core/pages/welcome/welcome.component';
+import { AboutComponent } from './core/pages/about/about.component';
+import { ContactComponent } from './core/pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { ManagerequestsComponent } from './core/admin/managerequests/managereque
     RequestComponent,
     ManageproductsComponent,
     ManagerequestsComponent,
+    WelcomeComponent,
+    AboutComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

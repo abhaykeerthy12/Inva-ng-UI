@@ -60,9 +60,7 @@ export class ManageproductsComponent implements OnInit, OnDestroy {
   LoadRequest(){
     this._subscription =  this._requestService.GetRequest().subscribe(
       (data) => {
-        this.request = data;
-        console.log(this.request);
-        
+        this.request = data;       
       }
     );
   }
@@ -76,9 +74,7 @@ export class ManageproductsComponent implements OnInit, OnDestroy {
         success => { 
           this.resetForm(this.AddProductForm);
           this.ShowMsg('Added', 'success');
-          setTimeout(()=>{ 
-            this.LoadProducts();
-          }, 1000); },
+        },
       (error: HttpErrorResponse) => {
         if(error){
           this.ShowMsg('Something Went Wrong', 'errror');
@@ -94,16 +90,10 @@ Delete(selectedProduct){
   this.request.forEach(req => {
       if(req.ProductId.toLowerCase() == selectedProduct.Id.toLowerCase()){
         ReqId = { "Id" : req.RequestId};
-        console.log(req);
       }
   });
-  console.log(ReqId);
-  console.log(ReqId["Id"]);
   this._requestService.DeleteFromDB(ReqId["Id"]);
-  this.ShowMsg('Deleted', 'success');
-  setTimeout(()=>{ 
-    this.LoadProducts();
-  }, 1000);
+  this.ShowMsg('Deleted', 'error');
 }
 
 // edit btn form creation
@@ -123,7 +113,6 @@ UpdateProduct(){
   // check if form is empty
   if(this.EditProductForm.invalid){  this.ShowMsg('Fields are empty', 'error'); return false; }
    // send the data to server
-   console.table(this.EditProductForm.value)
    this._subscription = this._productService.UpdateProduct(this.EditProductForm.value)
    .subscribe(
      success => { this.resetForm(this.EditProductForm); this.ShowMsg('Updated', 'success');},
@@ -132,6 +121,7 @@ UpdateProduct(){
        this.ShowMsg('Something Went Wrong', 'error');
      }
    });
+   this.EditProduct = false;
 }
 
   // the fn to show alert
@@ -147,12 +137,13 @@ UpdateProduct(){
     this.showAlert = true;
     setTimeout(()=>{ 
       this.showAlert = false;
-    }, 5000);
+      this.ngOnInit();
+    }, 1000);
 }
 
   // reset form fn
   resetForm(form) { form.reset(); }
-  Cancel(){ this.EditProduct = false; this.LoadProducts; this.ngOnInit()}
+  Cancel(){ this.EditProduct = false;  this.ngOnInit()}
 
   // search products fn
   Search(SearchString){

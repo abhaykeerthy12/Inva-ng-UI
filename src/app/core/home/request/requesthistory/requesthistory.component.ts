@@ -31,6 +31,7 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
 
   // Get all requests from the server
   LoadRequest(){
+    this.requests = [];
     this._subscription =  this._requestService.GetRequest().subscribe(
       (data) => {
           this.requests = data;
@@ -40,6 +41,7 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
   
   // get requests of current user
   FilterUser(){
+    this.userFilteredArray = [];
     const reqs = from(this.requests);
     const pendingRequests = reqs.pipe(filter( r => r.CurrentUserId.toLowerCase() == r.EmployeeId.toLowerCase()));
     this._subscription = pendingRequests.subscribe(
@@ -54,10 +56,10 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
 
   // get all products form the server
   LoadProducts(){
+    this.products = [];
     this._subscription =  this._productService.GetProducts().subscribe(
       (data) => {
         this.products = data;
-        console.log(this.products)
         this.FilterProducts(this.products, this.userFilteredArray);
       }
     );
@@ -66,22 +68,21 @@ export class RequesthistoryComponent implements OnInit, OnDestroy {
   // check if a product id is equal to product id in request array 
   // if yes, just pussh the corresponding product to a separate array 
   FilterProducts(prodArray, reqArray){
+    this.productListArray = [];
     reqArray.forEach(request => {
         prodArray.forEach(products => {
-          console.log(products)
-          console.log(request)
           if(request.ProductId.toLowerCase() == products.Id.toLowerCase()){
             this.productListArray.push(products);
           }
       });
     });
-    console.log(this.productListArray)
     this.CombineArray(this.productListArray, reqArray);
   }
 
   // combine the two arrays to get a easy ui frontly single array
   // this will simplify the ui part
   CombineArray(products, requests){
+    this.rows = [];
     for(let i = 0; i < requests.length; i++){
       if(products[i].Id.toLowerCase() == requests[i].ProductId.toLowerCase()){
             this.rows.push({

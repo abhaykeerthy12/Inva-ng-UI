@@ -9,8 +9,8 @@
             </a>
         </div>
         <div class="header-nav" [clr-nav-level]="1" *ngIf="!IsLoggedIn()">
-            <a routerLink="" routerLinkActive="" class="nav-link nav-text">About</a>
-            <a routerLink="" routerLinkActive="" class="nav-link nav-text">Contact Us</a>
+            <a routerLink="about" routerLinkActive="active" class="nav-link nav-text">About</a>
+            <a routerLink="contact" routerLinkActive="active" class="nav-link nav-text">Contact Us</a>
             <a routerLink="user/login" routerLinkActive="active" class="nav-link nav-text">Join</a>
         </div>
         <div class="header-actions" *ngIf="IsLoggedIn()">

@@ -1,0 +1,25 @@
+#AboutSection{
+    text-align: center;
+    #AboutContent{
+        width: 80%;
+        margin: 1rem auto;
+        box-shadow: none;
+        border: none;
+
+        img{
+            height: 300px;
+            width: 100%;
+            padding: 2rem;
+
+        }
+
+        #aboutinside{
+           .card{
+            box-shadow: none;
+            margin: 0;
+            border: none;
+            padding: 5px 10px;
+           }
+        }
+    }
+}
