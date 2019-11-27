@@ -63,7 +63,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       (error: HttpErrorResponse) => {
           if(error){
             if(error.status == 400){
-              this.ShowError('Invalid Credentials');
+              if(error.error.error == "User_Inactive"){
+                this.ShowError('Account is deactivated!, Contact Admin!');
+              }else{
+                this.ShowError('Invalid Credentials');
+              }
             }
           }
       });  

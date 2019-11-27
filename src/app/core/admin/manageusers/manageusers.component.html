@@ -1,0 +1,59 @@
+<section id="ManageUsersSection">
+<div class="card">
+
+    <div class="card-header animated lightSpeedIn faster">
+        <h3>Manage Users</h3>
+    </div>
+
+    <div class="card-block animated fadeIn faster">
+    <input type="text" id="SearchFieldManageUsers" *ngIf="!selectedUser"
+                        #SearchFieldManageUsers (keyup)="Search(SearchFieldManageUsers.value)" placeholder="Search!">
+    <div class="clr-row" *ngIf="selectedUser">
+        <div class="clr-col-lg-4">
+            <button class="btn btn-success btn-block" *ngIf="selectedUser.IsActive" (click)="Activeness(selectedUser)">Deactivate</button>
+            <button class="btn btn-success btn-block" *ngIf="!selectedUser.IsActive" (click)="Activeness(selectedUser)">Activate</button>
+        </div>
+        <div class="clr-col-lg-4">
+            <button class="btn btn-danger btn-block" *ngIf="!selectedUser.IsAdmin" (click)="Permission(selectedUser)">Promote</button>
+            <button class="btn btn-danger btn-block" *ngIf="selectedUser.IsAdmin" (click)="Permission(selectedUser)">Demote</button>
+        </div>
+        <div class="clr-col-lg-4">
+            <button class="btn btn-primary btn-block" (click)="Cancel()">Cancel</button>
+        </div>
+    </div>
+    <!-- the alert -->
+    <div class="alert" role="alert" [ngClass]="{'hideAlert': !showAlert, 'alert-danger': ErrorMsg, 'alert-success': SuccessMsg}">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper" *ngIf="ErrorMsg && !SuccessMsg">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <div class="alert-icon-wrapper" *ngIf="!ErrorMsg && SuccessMsg">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{ errorvar }}</span>
+        </div>
+    </div>
+    </div>
+    <clr-datagrid [(clrDgSingleSelected)]="selectedUser">
+
+        <clr-dg-column [clrDgSortBy]="'Name'">Name</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'Email'">Email</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'IsActive'">Active</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="'IsAdmin'">Admin</clr-dg-column>
+
+        <clr-dg-placeholder>No Users Apart From You!</clr-dg-placeholder>
+
+        <clr-dg-row class="animated fadeInLeft faster" *clrDgItems="let row of rows" [clrDgItem]="row">
+            <clr-dg-cell>{{row.Name}}</clr-dg-cell>
+            <clr-dg-cell>{{row.Email}}</clr-dg-cell>
+            <clr-dg-cell>{{row.IsActive}}</clr-dg-cell>
+            <clr-dg-cell>{{row.IsAdmin}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>Total: {{rows.length}} Requests</clr-dg-footer>
+
+    </clr-datagrid>
+    </div>
+</div>
+</section>

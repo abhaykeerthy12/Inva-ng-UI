@@ -3,7 +3,7 @@
 <div class="clr-row">
 
 <!-- the add products form -->
-<article id="AddProduct" class="clr-col-lg-4" *ngIf="!EditProduct">
+<article id="AddProduct" class="clr-col-md-12 clr-col-lg-4" *ngIf="!EditProduct">
 <form clrForm [formGroup]="AddProductForm" id="AddProductForm" (ngSubmit)="AddProduct()">
 <!-- the form card  -->
 <div class="card animated flipInX faster">
@@ -29,7 +29,7 @@
     
     <clr-input-container class="clr-row">
         <label class="clr-col-lg-4">Quantity</label>
-        <input type="text" class="clr-col-lg-8" clrInput formControlName="Quantity" />
+        <input type="number" min="1" class="clr-col-lg-8" clrInput formControlName="Quantity" />
         <clr-control-error>Quantity required!</clr-control-error>
     </clr-input-container>
     
@@ -74,7 +74,7 @@
 
 
 <!-- the edit form -->
-<article id="EditProduct" class="clr-col-lg-4" *ngIf="EditProduct">
+<article id="EditProduct" class="clr-col-md-12 clr-col-lg-4" *ngIf="EditProduct">
 <form clrForm [formGroup]="EditProductForm" id="EditProductForm" (ngSubmit)="UpdateProduct()">
 <!-- the form card  -->
 <div class="card animated flipInY faster">
@@ -100,7 +100,7 @@
     
     <clr-input-container class="clr-row">
         <label class="clr-col-lg-4">Quantity</label>
-        <input type="text" class="clr-col-lg-8" clrInput formControlName="Quantity" />
+        <input type="number" min="1" class="clr-col-lg-8" clrInput formControlName="Quantity" />
         <clr-control-error>Quantity required!</clr-control-error>
     </clr-input-container>
     
@@ -144,7 +144,7 @@
 <!-- the edit form -->
 
 <!-- the datagrid -->
-<article id="ShowProductGrid" class="clr-col-lg-8">
+<article id="ShowProductGrid" class="clr-col-md-12 clr-col-lg-8">
 <div class="card">
     <div class="card-header animated lightSpeedIn faster">
         Manage Products

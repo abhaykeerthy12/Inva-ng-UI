@@ -19,6 +19,42 @@ export class UserService {
     return this._http.get<UserModel[]>(this.Root_URL + '/api/account/alluserdata');
   }
 
+  // get all roles
+  GetRoles(){
+    return this._http.get(this.Root_URL + '/api/roles/getroles');
+  }
+
+  // get all user roles
+  GetUserRoles(){
+    return this._http.get(this.Root_URL + '/api/roles/getuserroles');
+  }
+
+  // make user active or inactive
+  UserActiveness(formData){
+    
+    let body = {
+      "Id": formData.UserId,
+      "IsActive": formData.IsActive,
+    }
+  
+    return this._http.patch(this.Root_URL + '/api/account/useractive', body).subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  // make user admin or user
+  UserPermission(formData){
+    
+    let body = {
+      "Id": formData.UserId,
+      "Role": formData.Role,
+    }
+  
+    return this._http.post(this.Root_URL + '/api/roles', body).subscribe(res => {
+      console.log(res);
+    });
+  }
+
   // register method 
   RegisterToDB(formData){
 
@@ -44,6 +80,30 @@ export class UserService {
 
     let reqheaders = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded' ,'No_Auth': 'true'});
     return this._http.post(this.Root_URL + '/token', body.toString(), {headers: reqheaders});
+  }
+
+  // update user
+  UpdateUser(formData){
+    
+    let body = {
+      "Id": formData.Id,
+      "Name": formData.Name,
+      "Email": formData.Email,
+    }
+  
+    return this._http.put(this.Root_URL + '/api/account/updateuser', body);
+  }
+
+  // change password
+  ChangePassword(formData){
+    
+    let body = {
+      "OldPassword": formData.OldPassword,
+      "NewPassword": formData.NewPassword,
+      "ConfirmPassword": formData.ConfirmPassword
+    }
+  
+    return this._http.post(this.Root_URL + '/api/account/changepassword', body);
   }
 
   // check if user is logged in
