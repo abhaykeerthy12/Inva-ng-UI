@@ -100,7 +100,6 @@ export class ManagerequestsComponent implements OnInit, OnDestroy {
   // this will simplify the ui part
   CombineArray(products, requests, users){
     this.rows = [];
-    console.log(users)
     for(let i = 0; i < requests.length; i++){
       // dont show data of deactivated users
       if((products[i].Id.toLowerCase() == requests[i].ProductId.toLowerCase()) 

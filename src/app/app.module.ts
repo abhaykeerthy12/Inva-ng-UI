@@ -35,6 +35,7 @@ import { WelcomeComponent } from './core/pages/welcome/welcome.component';
 import { AboutComponent } from './core/pages/about/about.component';
 import { ContactComponent } from './core/pages/contact/contact.component';
 import { ManageusersComponent } from './core/admin/manageusers/manageusers.component';
+import { SettingsComponent } from './core/home/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ManageusersComponent } from './core/admin/manageusers/manageusers.compo
     AboutComponent,
     ContactComponent,
     ManageusersComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

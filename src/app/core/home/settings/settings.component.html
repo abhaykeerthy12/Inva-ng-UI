@@ -1,0 +1,159 @@
+<section id="UserSettingsSection">  
+
+<!-- first card -->
+<article id="firstcard" *ngIf="!toggleCard">
+<div class="clr-row card">
+<div id="Userdata" class="clr-col-lg-6 card-block">             
+            <img class="animated zoomIn"
+                src="../../../../assets/images/placeholder-pic.svg" alt="no image to show"> 
+            <h2>{{ Name | titlecase }}</h2> 
+            <h5>{{ Email }}</h5>
+            <button class="btn btn-primary" (click)="toggleCardFunction()">Edit Myself!</button>        
+</div>
+<div id="Invadata" class="clr-col-lg-6 card-block">
+        <h1><clr-icon shape="namespace" size="68"></clr-icon>
+        <span class="title">Inva</span></h1>
+        <h4>Inventory Management Solution</h4><hr>
+        <h6>Hi {{ Name | lowercase }}, how are you?,<br>
+            We hope you like our app. <br>
+            The core motive of our team is to provide <br>
+            a consistent and user friendly experience. <br>
+            More features and tweaks are coming soon... <br>
+            Stay tuned!
+        </h6>         
+</div>
+</div>
+</article>
+
+<!-- second card -->
+<article id="secondcard" *ngIf="toggleCard">
+<div class="clr-row card animated flipInX faster">
+<div id="EditSection" class="clr-col-lg-6 card-block">             
+<div>
+    <h1>Edit</h1>
+</div> 
+
+<img src="../../../../assets/images/edit-pic.svg" alt="no image here!">
+
+<form clrForm [formGroup]="EditForm" id="EditForm" (ngSubmit)="Update()">
+
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Name</label>
+        <input type="text" class="clr-col-lg-8"clrInput formControlName="Name"  required/>
+        <clr-control-error>Name is required!</clr-control-error>
+    </clr-input-container>
+
+    <clr-input-container class="clr-row">
+        <label class="clr-col-lg-4">Email</label>
+        <input type="email" class="clr-col-lg-8"clrInput formControlName="Email"  required/>
+        <clr-control-error>A valid email is required!</clr-control-error>
+    </clr-input-container>
+
+    <!-- the alert -->
+    <div class="alert" role="alert" [ngClass]="{'hideAlert': !showAlert, 'alert-danger': ErrorMsg, 'alert-success': SuccessMsg}">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper" *ngIf="ErrorMsg && !SuccessMsg">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <div class="alert-icon-wrapper" *ngIf="!ErrorMsg && SuccessMsg">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{ errorvar }}</span>
+        </div>
+    </div>
+    </div>
+
+    <div>
+        <span *ngIf="(EditForm.touched && EditForm.invalid)">
+            <button class="btn btn-danger shadow" [disabled]="!EditForm.valid" >Error!</button>
+        </span>
+        <span *ngIf="(!EditForm.touched || EditForm.valid)">
+            <button class="btn btn-primary" >Update Me!</button>
+        </span>
+        <button class="btn btn-outline" (click)="toggleCardFunction()">Close</button>
+    </div>
+
+</form>
+
+
+</div>
+<div id="Invadata" class="clr-col-lg-6 card-block" *ngIf="!AdvBtn">
+        <h1><clr-icon shape="namespace" size="68"></clr-icon>
+        <span class="title">Inva</span></h1>
+        <h4>Inventory Management Solution</h4><hr>
+        <h6>{{ Name | titlecase }},<br>
+            Good to see that your editing details.<br>
+            Here are some Advanced settings,<br>
+            But remember,<br>
+            just use it wisely!<br>
+        </h6>
+        <div id="AdvBtn">
+            <div>
+                <button class="btn btn-danger" (click)="AdvFunction()">Advanced Settings!</button>
+            </div>
+        </div>         
+</div>
+
+<div id="ChangePwd" class="clr-col-lg-6 card-block" *ngIf="AdvBtn">
+       
+<div>
+    <h1>Change Password</h1>
+</div> 
+
+<form clrForm [formGroup]="ChangePwdForm" id="ChangePwdForm" (ngSubmit)="ChangePassword()">
+
+    <clr-password-container class="clr-row">
+        <label class="clr-col-lg-4">Old Password</label>
+        <input type="password" class="clr-col-lg-8" clrPassword formControlName="OldPassword"  required/>
+        <clr-control-error>A valid Password is required!</clr-control-error>
+    </clr-password-container>
+
+    <clr-password-container class="clr-row">
+        <label class="clr-col-lg-4">New Password</label>
+        <input type="password" class="clr-col-lg-8" clrPassword formControlName="NewPassword"  required/>
+        <clr-control-error>Password > 6 chars with numbers required!</clr-control-error>
+    </clr-password-container>
+
+    <clr-password-container class="clr-row">
+        <label class="clr-col-lg-4">Once More!</label>
+        <input type="password" class="clr-col-lg-8" clrPassword formControlName="ConfirmPassword"  required/>
+        <clr-control-error>Should match password!</clr-control-error>
+    </clr-password-container>
+
+    <!-- the alert -->
+    <div class="alert" role="alert" [ngClass]="{'hideAlert': !showAlert2, 'alert-danger': ErrorMsg, 'alert-success': SuccessMsg}">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper" *ngIf="ErrorMsg && !SuccessMsg">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <div class="alert-icon-wrapper" *ngIf="!ErrorMsg && SuccessMsg">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{ errorvar }}</span>
+        </div>
+    </div>
+    </div>
+
+    <div>
+        <span *ngIf="(ChangePwdForm.touched && ChangePwdForm.invalid)">
+            <button class="btn btn-danger shadow" [disabled]="!ChangePwdForm.valid" >Error!</button>
+        </span>
+        <span *ngIf="(!ChangePwdForm.touched || ChangePwdForm.valid)">
+            <button class="btn btn-primary" >Change Password!</button>
+        </span>
+        <button class="btn btn-outline" *ngIf="MoreBtn" (click)="More()">More</button>
+        <button class="btn btn-outline" *ngIf="!MoreBtn" (click)="More()">Less</button><br>
+    </div>
+
+</form>
+<button class="btn btn-danger" *ngIf="DABtn" (click)="Deactivate()">Deactivate Account</button>
+
+
+</div>
+
+</div>
+</article>
+
+</section>

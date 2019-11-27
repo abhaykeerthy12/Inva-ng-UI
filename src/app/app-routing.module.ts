@@ -22,6 +22,7 @@ import { WelcomeComponent } from './core/pages/welcome/welcome.component';
 import { AboutComponent } from './core/pages/about/about.component';
 import { ContactComponent } from './core/pages/contact/contact.component';
 import { ManageusersComponent } from './core/admin/manageusers/manageusers.component';
+import { SettingsComponent } from './core/home/settings/settings.component';
 
 
 const routes: Routes = [
@@ -168,6 +169,17 @@ const routes: Routes = [
       {
         path: '',
         component: RequestComponent
+      }
+    ]
+  },
+  {
+    path: 'settings',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: SettingsComponent
       }
     ]
   },

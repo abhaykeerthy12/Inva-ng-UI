@@ -82,6 +82,30 @@ export class UserService {
     return this._http.post(this.Root_URL + '/token', body.toString(), {headers: reqheaders});
   }
 
+  // update user
+  UpdateUser(formData){
+    
+    let body = {
+      "Id": formData.Id,
+      "Name": formData.Name,
+      "Email": formData.Email,
+    }
+  
+    return this._http.put(this.Root_URL + '/api/account/updateuser', body);
+  }
+
+  // change password
+  ChangePassword(formData){
+    
+    let body = {
+      "OldPassword": formData.OldPassword,
+      "NewPassword": formData.NewPassword,
+      "ConfirmPassword": formData.ConfirmPassword
+    }
+  
+    return this._http.post(this.Root_URL + '/api/account/changepassword', body);
+  }
+
   // check if user is logged in
   isUserLoggedIn(){
     if(localStorage.getItem('ACCESS_TOKEN') != null){
