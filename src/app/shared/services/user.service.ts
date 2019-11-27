@@ -19,6 +19,42 @@ export class UserService {
     return this._http.get<UserModel[]>(this.Root_URL + '/api/account/alluserdata');
   }
 
+  // get all roles
+  GetRoles(){
+    return this._http.get(this.Root_URL + '/api/roles/getroles');
+  }
+
+  // get all user roles
+  GetUserRoles(){
+    return this._http.get(this.Root_URL + '/api/roles/getuserroles');
+  }
+
+  // make user active or inactive
+  UserActiveness(formData){
+    
+    let body = {
+      "Id": formData.UserId,
+      "IsActive": formData.IsActive,
+    }
+  
+    return this._http.patch(this.Root_URL + '/api/account/useractive', body).subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  // make user admin or user
+  UserPermission(formData){
+    
+    let body = {
+      "Id": formData.UserId,
+      "Role": formData.Role,
+    }
+  
+    return this._http.post(this.Root_URL + '/api/roles', body).subscribe(res => {
+      console.log(res);
+    });
+  }
+
   // register method 
   RegisterToDB(formData){
 

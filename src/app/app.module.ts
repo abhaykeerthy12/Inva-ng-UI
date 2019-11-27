@@ -34,6 +34,7 @@ import { ManagerequestsComponent } from './core/admin/managerequests/managereque
 import { WelcomeComponent } from './core/pages/welcome/welcome.component';
 import { AboutComponent } from './core/pages/about/about.component';
 import { ContactComponent } from './core/pages/contact/contact.component';
+import { ManageusersComponent } from './core/admin/manageusers/manageusers.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ContactComponent } from './core/pages/contact/contact.component';
     WelcomeComponent,
     AboutComponent,
     ContactComponent,
+    ManageusersComponent,
   ],
   imports: [
     BrowserModule,

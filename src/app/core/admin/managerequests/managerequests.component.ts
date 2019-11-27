@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RequestService } from 'src/app/shared/services/request.service';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { from } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import {ClrDatagridSortOrder} from '@clr/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -104,21 +102,24 @@ export class ManagerequestsComponent implements OnInit, OnDestroy {
     this.rows = [];
     console.log(users)
     for(let i = 0; i < requests.length; i++){
+      // dont show data of deactivated users
       if((products[i].Id.toLowerCase() == requests[i].ProductId.toLowerCase()) 
           && (users[i].Id.toLowerCase() == requests[i].EmployeeId.toLowerCase())){
-            this.rows.push({
-                "Id": requests[i].RequestId,
-                "ProductId": products[i].Id,
-                "EmployeeId": requests[i].EmployeeId,
-                "EmployeeName": users[i].Name,
-                "Name": products[i].Name,
-                "Type": products[i].Type,
-                "Quantity": requests[i].Quantity,
-                "ProductQuantity": products[i].Quantity,
-                "ProductPrice": products[i].Price,
-                "Status": requests[i].Status,
-                "Date": requests[i].RequestedDate
-            });
+            if(users[i].IsActive == true){
+              this.rows.push({
+                  "Id": requests[i].RequestId,
+                  "ProductId": products[i].Id,
+                  "EmployeeId": requests[i].EmployeeId,
+                  "EmployeeName": users[i].Name,
+                  "Name": products[i].Name,
+                  "Type": products[i].Type,
+                  "Quantity": requests[i].Quantity,
+                  "ProductQuantity": products[i].Quantity,
+                  "ProductPrice": products[i].Price,
+                  "Status": requests[i].Status,
+                  "Date": requests[i].RequestedDate
+              });
+          }
       }
     }
     this.realArray = this.rows;
