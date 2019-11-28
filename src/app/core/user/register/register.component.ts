@@ -46,6 +46,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
       return false;
     }
 
+    
+    // check if passwords match
+    if(this.RegisterForm.value.ConfirmPassword != this.RegisterForm.value.Password){
+      this.ShowError('Passwords Should Match');
+      return false;
+    }
+
     this._subscription = this._userService.RegisterToDB(this.RegisterForm.value).subscribe(
       success => {
         this._router.navigate(['/user/login']);

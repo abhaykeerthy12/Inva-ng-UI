@@ -49,6 +49,7 @@
         margin: 0;
         margin-bottom: 2rem;
         height: 100%;
+        width: 100%;
         .card-header{
             h2{
                 margin: 0;
@@ -62,6 +63,16 @@
             margin-top: 0.2rem;
             margin-bottom: 0.3rem;
             padding-bottom: 0.5rem;
+        }
+    }
+
+    #EditProduct, #AddProduct{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        
+
+        input{
+            width: 100%;
         }
     }
 }

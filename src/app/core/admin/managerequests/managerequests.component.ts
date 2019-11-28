@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import {ClrDatagridSortOrder} from '@clr/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-managerequests',
@@ -50,7 +51,6 @@ export class ManagerequestsComponent implements OnInit, OnDestroy {
               this.requests.push(value);
             }
           });
-          // this.FilterUser();
           this.LoadProducts();
       });
   }
@@ -61,24 +61,9 @@ export class ManagerequestsComponent implements OnInit, OnDestroy {
     this._subscription =  this._productService.GetProducts().subscribe(
       (data) => {
         this.products = data;
-        this.FilterProducts(this.products, this.requests);
+        this.LoadUsers();
       }
     );
-  }
-
-
-  // check if a product id is equal to product id in request array 
-  // if yes, just pussh the corresponding product to a separate array 
-  FilterProducts(prodArray, reqArray){
-    this.productListArray = [];
-    reqArray.forEach(request => {
-        prodArray.forEach(products => {
-          if(request.ProductId.toLowerCase() == products.Id.toLowerCase()){
-            this.productListArray.push(products);
-          }
-      });
-    });
-    this.LoadUsers();
   }
 
   // Get all requests from the server
@@ -87,12 +72,9 @@ export class ManagerequestsComponent implements OnInit, OnDestroy {
     this._subscription =  this._userService.GetAllUserData().subscribe(
       (data) => {
           data.forEach(value => {
-            this.requests.forEach(req => {
-            if(value.Id == req.EmployeeId){
               this.users.push(value);
-            }});
           });
-          this.CombineArray(this.productListArray, this.requests, this.users);
+          this.CombineArray(this.products, this.requests, this.users);
       });
   }
 
@@ -100,27 +82,51 @@ export class ManagerequestsComponent implements OnInit, OnDestroy {
   // this will simplify the ui part
   CombineArray(products, requests, users){
     this.rows = [];
-    for(let i = 0; i < requests.length; i++){
-      // dont show data of deactivated users
-      if((products[i].Id.toLowerCase() == requests[i].ProductId.toLowerCase()) 
-          && (users[i].Id.toLowerCase() == requests[i].EmployeeId.toLowerCase())){
-            if(users[i].IsActive == true){
-              this.rows.push({
-                  "Id": requests[i].RequestId,
-                  "ProductId": products[i].Id,
-                  "EmployeeId": requests[i].EmployeeId,
-                  "EmployeeName": users[i].Name,
-                  "Name": products[i].Name,
-                  "Type": products[i].Type,
-                  "Quantity": requests[i].Quantity,
-                  "ProductQuantity": products[i].Quantity,
-                  "ProductPrice": products[i].Price,
-                  "Status": requests[i].Status,
-                  "Date": requests[i].RequestedDate
-              });
-          }
-      }
+    let p = null;
+    let u = null;
+
+    let productsFilter = (pid) => {
+      p = null;
+      products.forEach(prod => {
+        if(prod.Id == pid){
+          return p = prod
+        }
+      });
     }
+
+    let userFilter = (eid) => {
+      u = null;
+      users.forEach(user => {
+        if(user.Id == eid){
+          return u = user
+        }
+      });
+    }
+
+    requests.forEach(request => {
+
+        // console.log(count(request));
+        productsFilter(request.ProductId);
+        userFilter(request.EmployeeId);
+        if(u.IsActive == true){
+          this.rows.push({
+
+                  "Id": request.RequestId,
+                  "ProductId": p.Id,
+                  "EmployeeId": request.EmployeeId,
+                  "EmployeeName": u.Name,
+                  "Name": p.Name,
+                  "Type": p.Type,
+                  "Quantity": request.Quantity,
+                  "ProductQuantity": p.Quantity,
+                  "ProductPrice": p.Price,
+                  "Status": request.Status,
+                  "Date": request.RequestedDate
+              });
+        }
+
+    });
+       
     this.realArray = this.rows;
   }
 
